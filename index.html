@@ -1,6 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <style>
+body{
+    font-family: Arial;
+    background:#f5f5f5;
+    text-align:center;
+}
+
+.products{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:30px;
+}
+
+.product{
+    background:white;
+    padding:20px;
+    width:200px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+.product img{
+    width:150px;
+}
+
+button{
+    background:green;
+    color:white;
+    border:none;
+    padding:8px 15px;
+    cursor:pointer;
+}
+</style>
 <title>Shop của tôi</title>
 <style>
 body{
@@ -38,45 +72,27 @@ cursor:pointer;
 
 <h1>SHOP ONLINE</h1>
 
+<div class="products">
+
 <div class="product">
 <h3>Áo thun</h3>
+<img src="images/aothun.jpg">
 <p>Giá: 100k</p>
 <button>Mua</button>
 </div>
 
-<h2>thầy giáo dạy toán s1tg</h2>
-<img src="tainghe.jpg" width="200">
-<p>Giá: 350.000đ</p>
-
-<a href="https://zalo.me/0838434412">
-<button>Mua ngay</button>
-</a>
-
 <div class="product">
-<h3>Bàn phím</h3>
-<p>Giá: 500k</p>
-<button>Mua</button>
-</div>
-
-</body>
-</html>
-<div class="product">
-<img src="images/ao.jpg" width="150">
-<h3>Áo thun</h3>
-<p>Giá: 100k</p>
-<button>Mua</button>
-</div>
-<div class="product">
-<img src="images/tainghe.jpg" width="150">
 <h3>Tai nghe</h3>
+<img src="images/tainghe.jpg">
 <p>Giá: 300k</p>
 <button>Mua</button>
 </div>
+
 <div class="product">
-<img src="images/banphim.jpg" width="150">
 <h3>Bàn phím</h3>
+<img src="images/banphim.jpg">
 <p>Giá: 500k</p>
 <button>Mua</button>
-
 </div>
 
+</div>
