@@ -1,196 +1,14 @@
 ```html
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>SHOP ONLINE</title>
 
-<style>
-
-body{
-font-family:Arial;
-margin:0;
-background:#f5f5f5;
-}
-
-/* HEADER */
-
-header{
-background:#ff5722;
-color:white;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:15px 40px;
-}
-
-.logo{
-font-size:24px;
-font-weight:bold;
-}
-
-.search input{
-padding:10px;
-border:none;
-border-radius:5px;
-width:300px;
-}
-
-/* MENU */
-
-.menu{
-background:white;
-padding:10px;
-display:flex;
-justify-content:center;
-gap:40px;
-box-shadow:0 2px 5px rgba(0,0,0,0.1);
-}
-
-.menu div{
-cursor:pointer;
-}
-
-/* BANNER */
-
-.banner{
-height:300px;
-background:url("https://picsum.photos/1200/400") center/cover;
-margin-bottom:20px;
-}
-
-/* PRODUCTS */
-
-.products{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:25px;
-padding:20px;
-}
-
-.product{
-background:white;
-width:220px;
-padding:15px;
-border-radius:10px;
-box-shadow:0 3px 10px rgba(0,0,0,0.15);
-text-align:center;
-transition:0.3s;
-}
-
-.product:hover{
-transform:translateY(-5px);
-}
-
-.product img{
-width:150px;
-cursor:pointer;
-}
-
-.price{
-color:#ff5722;
-font-weight:bold;
-font-size:18px;
-}
-
-.star{
-color:gold;
-}
-
-/* BUTTON */
-
-button{
-border:none;
-padding:8px 12px;
-margin:5px;
-border-radius:5px;
-cursor:pointer;
-}
-
-.cartBtn{
-background:#2196f3;
-color:white;
-}
-
-.buy{
-background:#4caf50;
-color:white;
-}
-
-/* CART */
-
-.cart{
-position:fixed;
-right:20px;
-top:20px;
-background:white;
-padding:15px;
-border-radius:10px;
-box-shadow:0 5px 10px rgba(0,0,0,0.2);
-width:200px;
-}
-
-/* POPUP */
-
-.popup{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.6);
-justify-content:center;
-align-items:center;
-}
-
-.popupBox{
-background:white;
-padding:30px;
-border-radius:10px;
-text-align:center;
-}
-
-/* CONTACT BUTTON */
-
-.call{
-position:fixed;
-bottom:20px;
-left:20px;
-background:#4caf50;
-color:white;
-padding:15px;
-border-radius:50px;
-text-decoration:none;
-}
-
-.zalo{
-position:fixed;
-bottom:80px;
-left:20px;
-background:#0084ff;
-color:white;
-padding:15px;
-border-radius:50px;
-text-decoration:none;
-}
-
-/* FOOTER */
-
-footer{
-background:#222;
-color:white;
-text-align:center;
-padding:30px;
-margin-top:40px;
-}
-
-</style>
+<link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -198,200 +16,62 @@ margin-top:40px;
 
 <header>
 
-<div class="logo">🛒 SHOP ONLINE</div>
+<h2>🛒 SHOP ONLINE</h2>
 
-<div class="search">
-<input type="text" placeholder="Tìm sản phẩm..." onkeyup="searchProduct(this.value)">
-</div>
+<input type="text" placeholder="Tìm sản phẩm...">
+
+<a href="cart.html">🛒 Giỏ hàng</a>
 
 </header>
-
-<div class="menu">
-
-<div>Áo</div>
-<div>Điện tử</div>
-<div>Phụ kiện</div>
-<div>Khuyến mãi</div>
-
-</div>
-
-<div class="banner"></div>
 
 <div class="products">
 
 <div class="product">
 
+<a href="product.html">
+
+<img src="images/ao.jpg">
+
 <h3>Áo thun</h3>
 
-<img src="images/ao.jpg" onclick="zoom(this.src)">
+</a>
 
 <p class="price">100k</p>
 
-<div class="star">⭐⭐⭐⭐☆</div>
-
-<button class="cartBtn" onclick="addCart('Áo thun',100)">Thêm giỏ</button>
-
-<a href="tel:0123456789"><button class="buy">Mua</button></a>
+<button onclick="addCart('Áo thun',100)">Thêm giỏ</button>
 
 </div>
 
+
 <div class="product">
+
+<a href="product.html">
+
+<img src="images/tainghe.jpg">
 
 <h3>Tai nghe</h3>
 
-<img src="images/tainghe.jpg" onclick="zoom(this.src)">
+</a>
 
 <p class="price">300k</p>
 
-<div class="star">⭐⭐⭐⭐⭐</div>
-
-<button class="cartBtn" onclick="addCart('Tai nghe',300)">Thêm giỏ</button>
-
-<a href="tel:0123456789"><button class="buy">Mua</button></a>
-
-</div>
-
-<div class="product">
-
-<h3>Bàn phím</h3>
-
-<img src="images/banphim.jpg" onclick="zoom(this.src)">
-
-<p class="price">500k</p>
-
-<div class="star">⭐⭐⭐⭐☆</div>
-
-<button class="cartBtn" onclick="addCart('Bàn phím',500)">Thêm giỏ</button>
-
-<a href="tel:0123456789"><button class="buy">Mua</button></a>
+<button onclick="addCart('Tai nghe',300)">Thêm giỏ</button>
 
 </div>
 
 </div>
-
-<div class="cart">
-
-<h3>🛒 Giỏ hàng</h3>
-
-<ul id="cartList"></ul>
-
-<p>Tổng: <span id="total">0</span>k</p>
-
-<button onclick="openPay()">Thanh toán</button>
-
-</div>
-
-<div class="popup" id="payBox">
-
-<div class="popupBox">
-
-<h2>Thanh toán</h2>
-
-<p>Tổng tiền: <span id="payTotal"></span>k</p>
-
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=ShopThanhToan">
-
-<br><br>
-
-<button onclick="pay()">Xác nhận</button>
-
-<br><br>
-
-<button onclick="closePay()">Đóng</button>
-
-</div>
-
-</div>
-
-<a class="call" href="tel:0123456789">📞 Gọi</a>
-
-<a class="zalo" href="https://zalo.me/0123456789">💬 Zalo</a>
-
-<footer>
-
-<h3>Liên hệ</h3>
-
-<p>📞 0123456789</p>
-
-<p>Zalo: 0123456789</p>
-
-<p>Facebook: facebook.com/tenban</p>
-
-</footer>
 
 <script>
 
-let total=0
-
 function addCart(name,price){
 
-let li=document.createElement("li")
+let cart=JSON.parse(localStorage.getItem("cart"))||[]
 
-li.innerText=name+" - "+price+"k"
+cart.push({name,price})
 
-document.getElementById("cartList").appendChild(li)
+localStorage.setItem("cart",JSON.stringify(cart))
 
-total+=price
-
-document.getElementById("total").innerText=total
-
-}
-
-function zoom(src){
-
-let w=window.open()
-
-w.document.write("<img src='"+src+"' style='width:100%'>")
-
-}
-
-function searchProduct(value){
-
-let products=document.querySelectorAll(".product")
-
-products.forEach(p=>{
-
-let name=p.querySelector("h3").innerText.toLowerCase()
-
-p.style.display=name.includes(value.toLowerCase())?"block":"none"
-
-})
-
-}
-
-function openPay(){
-
-if(total==0){
-
-alert("Giỏ hàng trống")
-
-return
-
-}
-
-document.getElementById("payBox").style.display="flex"
-
-document.getElementById("payTotal").innerText=total
-
-}
-
-function closePay(){
-
-document.getElementById("payBox").style.display="none"
-
-}
-
-function pay(){
-
-alert("Thanh toán thành công (giả lập)")
-
-document.getElementById("cartList").innerHTML=""
-
-total=0
-
-document.getElementById("total").innerText=0
-
-closePay()
+alert("Đã thêm vào giỏ")
 
 }
 
