@@ -5,92 +5,111 @@
 <title>Shop của tôi</title>
 
 <style>
+
 body{
-    font-family: Arial;
-    background:#f5f5f5;
-    text-align:center;
-    margin:0;
+font-family: Arial;
+background:#f3f4f6;
+margin:0;
+text-align:center;
 }
 
-h1{
-    background:black;
-    color:white;
-    padding:20px;
+header{
+background:#111;
+color:white;
+padding:20px;
+font-size:28px;
+font-weight:bold;
 }
 
 .products{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:30px;
-    padding:20px;
+display:flex;
+justify-content:center;
+gap:40px;
+flex-wrap:wrap;
+padding:40px;
 }
 
 .product{
-    background:white;
-    padding:20px;
-    width:200px;
-    border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,0.1);
+background:white;
+width:220px;
+border-radius:12px;
+padding:20px;
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.product:hover{
+transform:translateY(-8px);
+box-shadow:0 15px 30px rgba(0,0,0,0.2);
 }
 
 .product img{
-    width:150px;
+width:100%;
+border-radius:8px;
+}
+
+.price{
+color:#e63946;
+font-weight:bold;
+margin:10px 0;
 }
 
 button{
-    background:green;
-    color:white;
-    border:none;
-    padding:10px 15px;
-    cursor:pointer;
-    border-radius:5px;
+background:#16a34a;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:6px;
+cursor:pointer;
+font-weight:bold;
 }
 
 button:hover{
-    background:darkgreen;
+background:#15803d;
 }
 
 .cart{
-    background:white;
-    margin:20px auto;
-    padding:20px;
-    width:300px;
-    border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,0.1);
+background:white;
+width:320px;
+margin:40px auto;
+padding:20px;
+border-radius:12px;
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
 }
 
-.cart h2{
-    margin-top:0;
+.total{
+margin-top:10px;
+font-weight:bold;
+font-size:18px;
 }
+
 </style>
-
 </head>
 
 <body>
 
-<h1>SHOP ONLINE</h1>
+<header>🛍 SHOP ONLINE</header>
 
 <div class="products">
 
 <div class="product">
 <h3>Áo thun</h3>
 <img src="images/aothun.jpg">
-<p>Giá: 100k</p>
+<div class="price">100k</div>
 <button onclick="addToCart('Áo thun',100)">Thêm vào giỏ</button>
 </div>
 
 <div class="product">
 <h3>Tai nghe</h3>
 <img src="images/tainghe.jpg">
-<p>Giá: 300k</p>
+<div class="price">300k</div>
 <button onclick="addToCart('Tai nghe',300)">Thêm vào giỏ</button>
 </div>
 
 <div class="product">
 <h3>Bàn phím</h3>
 <img src="images/banphim.jpg">
-<p>Giá: 500k</p>
+<div class="price">500k</div>
 <button onclick="addToCart('Bàn phím',500)">Thêm vào giỏ</button>
 </div>
 
@@ -99,23 +118,27 @@ button:hover{
 <div class="cart">
 <h2>🛒 Giỏ hàng</h2>
 <ul id="cart-list"></ul>
-<p><b>Tổng tiền:</b> <span id="total">0</span>k</p>
+<div class="total">Tổng tiền: <span id="total">0</span>k</div>
 </div>
 
 <script>
+
 let total = 0;
 
-function addToCart(name, price){
-    let list = document.getElementById("cart-list");
+function addToCart(name,price){
 
-    let item = document.createElement("li");
-    item.textContent = name + " - " + price + "k";
+let list=document.getElementById("cart-list");
 
-    list.appendChild(item);
+let item=document.createElement("li");
+item.textContent=name+" - "+price+"k";
 
-    total += price;
-    document.getElementById("total").textContent = total;
+list.appendChild(item);
+
+total+=price;
+document.getElementById("total").textContent=total;
+
 }
+
 </script>
 
 </body>
