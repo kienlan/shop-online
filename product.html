@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Chi tiết sản phẩm</title>
+
+<style>
+body{
+font-family: Arial;
+background:#1e90ff;
+text-align:center;
+color:white;
+}
+
+.product{
+background:white;
+color:black;
+width:350px;
+margin:50px auto;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 15px rgba(0,0,0,0.3);
+}
+
+.product img{
+width:250px;
+border-radius:10px;
+}
+
+button{
+background:green;
+color:white;
+border:none;
+padding:10px 20px;
+margin:10px;
+cursor:pointer;
+border-radius:5px;
+font-size:16px;
+}
+
+button:hover{
+background:darkgreen;
+}
+
+.back{
+background:black;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>CHI TIẾT SẢN PHẨM</h1>
+
+<div class="product">
+
+<h2 id="name">Sản phẩm</h2>
+
+<img id="image" src="">
+
+<p id="price"></p>
+
+<button onclick="buy()">Mua ngay</button>
+
+<br><br>
+
+<button class="back" onclick="goBack()">Quay lại shop</button>
+
+</div>
+
+<script>
+
+const urlParams = new URLSearchParams(window.location.search)
+
+const name = urlParams.get("name")
+const price = urlParams.get("price")
+const image = urlParams.get("image")
+
+document.getElementById("name").innerText = name
+document.getElementById("price").innerText = "Giá: " + price
+document.getElementById("image").src = image
+
+function buy(){
+alert("Bạn đã đặt mua " + name)
+window.location.href="tel:0123456789"
+}
+
+function goBack(){
+window.location.href="index.html"
+}
+
+</script>
+
+</body>
+</html>
