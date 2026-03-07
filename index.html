@@ -1,32 +1,23 @@
-khuat chung kien
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>SHOP ONLINE</title>
-
 <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
 <header>
-<div class="banner">
-
-<img id="slide" src="images/banner1.jpg">
-
-</div>
-<h2>🛒 SHOP ONLINE</h2>
+<h1>🛒 SHOP ONLINE</h1>
 
 <input type="text" id="search" placeholder="Tìm sản phẩm..." onkeyup="searchProduct()">
 
 <a href="cart.html">🛒 Giỏ hàng</a>
-
 </header>
+
+
+<div class="products">
 
 <div class="product">
 
@@ -38,96 +29,69 @@ khuat chung kien
 
 <button onclick="addCart('Áo thun',100)">Thêm giỏ</button>
 
+<button onclick="buyNow('Áo thun',100)">Mua ngay</button>
+
 </div>
 
-<div class="product">
 
-<a href="product.html">
+<div class="product">
 
 <img src="images/tainghe.jpg">
 
 <h3>Tai nghe</h3>
 
-</a>
-
 <p class="price">300k</p>
 
 <button onclick="addCart('Tai nghe',300)">Thêm giỏ</button>
 
+<button onclick="buyNow('Tai nghe',300)">Mua ngay</button>
+
 </div>
+
+
 <div class="product">
-<a href="product.html?name=Bàn phím&price=500k&image=images/banphim.jpg">
+
 <img src="images/banphim.jpg">
+
 <h3>Bàn phím</h3>
-</a>
 
 <p class="price">500k</p>
 
-<button onclick="addToCart('Bàn phím','500k','images/banphim.jpg')">
-Thêm giỏ
-</button>
+<button onclick="addCart('Bàn phím',500)">Thêm giỏ</button>
+
+<button onclick="buyNow('Bàn phím',500)">Mua ngay</button>
+
 </div>
+
 </div>
 
-<script>
-<script>
 
-let images=[
-"images/banner1.jpg",
-"images/banner2.jpg",
-"images/banner3.jpg"
-]
-
-let i=0
-
-setInterval(function(){
-
-i++
-
-if(i>=images.length){
-i=0
-}
-
-document.getElementById("slide").src=images[i]
-
-},3000)
 
 <script>
+
 function addCart(name,price){
- let cart=JSON.parse(localStorage.getItem("cart"))||[]
- cart.push({name,price})
- localStorage.setItem("cart",JSON.stringify(cart))
- alert("Đã thêm vào giỏ")
+
+let cart = JSON.parse(localStorage.getItem("cart")) || []
+
+cart.push({name:name,price:price})
+
+localStorage.setItem("cart",JSON.stringify(cart))
+
+alert("Đã thêm vào giỏ")
+
 }
-</script>
 
-</body>
-</html>
 
-</footer>
-  <footer class="footer">
+function buyNow(name,price){
 
-<h2>Liên hệ shop</h2>
+addCart(name,price)
 
-<p>📞 SĐT:  0838434412</p>
+window.location="cart.html"
 
-<p>
-<a href="https://www.facebook.com/khuatt.trung.kien" target="_blank">Facebook</a> |
-<a href="https://zalo.me" target="_blank">Zalo</a>
-</p>
+}
 
-<p>© 2026 Shop Online</p>
 
-</footer>
 
-<div class="chat">
-
-<a href="https://zalo.me" target="_blank">🟦</a>
-
-<a href="https://m.me" target="_blank">💬</a>
-
-</div>
-<script>
 function searchProduct(){
 
 let input=document.getElementById("search").value.toLowerCase()
@@ -147,33 +111,8 @@ products[i].style.display="none"
 }
 
 }
-</script>
-<script>
-
-function addCart(name,price){
-
-let cart = JSON.parse(localStorage.getItem("cart")) || []
-
-cart.push({name:name,price:price})
-
-localStorage.setItem("cart",JSON.stringify(cart))
-
-alert("Đã thêm vào giỏ")
-
-}
 
 </script>
+
 </body>
 </html>
-```
-
-
-
-
-
-
-
-
-
-
-
