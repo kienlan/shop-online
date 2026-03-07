@@ -72,3 +72,20 @@ padding:10px 15px;
 border-radius:8px;
 font-weight:bold;
 }
+.footer{
+background:black;
+color:white;
+text-align:center;
+padding:30px;
+margin-top:50px;
+}
+
+.footer a{
+color:#00ffff;
+text-decoration:none;
+font-weight:bold;
+}
+
+.footer a:hover{
+text-decoration:underline;
+}
