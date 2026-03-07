@@ -1,7 +1,9 @@
 ```html
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -12,36 +14,53 @@
 body{
 font-family:Arial;
 margin:0;
-background:linear-gradient(135deg,#1e90ff,#00c6ff);
+background:#f5f5f5;
+}
+
+/* HEADER */
+
+header{
+background:#ff5722;
+color:white;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:15px 40px;
+}
+
+.logo{
+font-size:24px;
+font-weight:bold;
+}
+
+.search input{
+padding:10px;
+border:none;
+border-radius:5px;
+width:300px;
 }
 
 /* MENU */
 
-nav{
-background:#111;
-color:white;
+.menu{
+background:white;
+padding:10px;
 display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 30px;
+justify-content:center;
+gap:40px;
+box-shadow:0 2px 5px rgba(0,0,0,0.1);
 }
 
-nav h2{
-margin:0;
-}
-
-nav input{
-padding:8px;
-border-radius:5px;
-border:none;
-width:250px;
+.menu div{
+cursor:pointer;
 }
 
 /* BANNER */
 
 .banner{
-height:250px;
+height:300px;
 background:url("https://picsum.photos/1200/400") center/cover;
+margin-bottom:20px;
 }
 
 /* PRODUCTS */
@@ -50,22 +69,22 @@ background:url("https://picsum.photos/1200/400") center/cover;
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-gap:30px;
-padding:40px;
+gap:25px;
+padding:20px;
 }
 
 .product{
 background:white;
 width:220px;
 padding:15px;
-border-radius:12px;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,0.15);
 text-align:center;
-box-shadow:0 10px 20px rgba(0,0,0,0.2);
 transition:0.3s;
 }
 
 .product:hover{
-transform:scale(1.05);
+transform:translateY(-5px);
 }
 
 .product img{
@@ -74,13 +93,16 @@ cursor:pointer;
 }
 
 .price{
-color:red;
+color:#ff5722;
 font-weight:bold;
+font-size:18px;
 }
 
 .star{
 color:gold;
 }
+
+/* BUTTON */
 
 button{
 border:none;
@@ -91,12 +113,12 @@ cursor:pointer;
 }
 
 .cartBtn{
-background:#007bff;
+background:#2196f3;
 color:white;
 }
 
 .buy{
-background:#28a745;
+background:#4caf50;
 color:white;
 }
 
@@ -104,21 +126,43 @@ color:white;
 
 .cart{
 position:fixed;
-top:20px;
 right:20px;
+top:20px;
 background:white;
 padding:15px;
 border-radius:10px;
-box-shadow:0 5px 10px rgba(0,0,0,0.3);
+box-shadow:0 5px 10px rgba(0,0,0,0.2);
+width:200px;
 }
 
-/* CONTACT BUTTONS */
+/* POPUP */
+
+.popup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+justify-content:center;
+align-items:center;
+}
+
+.popupBox{
+background:white;
+padding:30px;
+border-radius:10px;
+text-align:center;
+}
+
+/* CONTACT BUTTON */
 
 .call{
 position:fixed;
 bottom:20px;
 left:20px;
-background:#28a745;
+background:#4caf50;
 color:white;
 padding:15px;
 border-radius:50px;
@@ -139,11 +183,11 @@ text-decoration:none;
 /* FOOTER */
 
 footer{
-background:#111;
+background:#222;
 color:white;
 text-align:center;
 padding:30px;
-margin-top:50px;
+margin-top:40px;
 }
 
 </style>
@@ -152,13 +196,24 @@ margin-top:50px;
 
 <body>
 
-<nav>
+<header>
 
-<h2>🛒 SHOP ONLINE</h2>
+<div class="logo">🛒 SHOP ONLINE</div>
 
+<div class="search">
 <input type="text" placeholder="Tìm sản phẩm..." onkeyup="searchProduct(this.value)">
+</div>
 
-</nav>
+</header>
+
+<div class="menu">
+
+<div>Áo</div>
+<div>Điện tử</div>
+<div>Phụ kiện</div>
+<div>Khuyến mãi</div>
+
+</div>
 
 <div class="banner"></div>
 
@@ -174,12 +229,11 @@ margin-top:50px;
 
 <div class="star">⭐⭐⭐⭐☆</div>
 
-<button class="cartBtn" onclick="addCart(100)">Thêm giỏ</button>
+<button class="cartBtn" onclick="addCart('Áo thun',100)">Thêm giỏ</button>
 
 <a href="tel:0123456789"><button class="buy">Mua</button></a>
 
 </div>
-
 
 <div class="product">
 
@@ -191,16 +245,15 @@ margin-top:50px;
 
 <div class="star">⭐⭐⭐⭐⭐</div>
 
-<button class="cartBtn" onclick="addCart(300)">Thêm giỏ</button>
+<button class="cartBtn" onclick="addCart('Tai nghe',300)">Thêm giỏ</button>
 
 <a href="tel:0123456789"><button class="buy">Mua</button></a>
 
 </div>
 
-
 <div class="product">
 
-<h3>oanh có sừng hôm bữa</h3>
+<h3>Bàn phím</h3>
 
 <img src="images/banphim.jpg" onclick="zoom(this.src)">
 
@@ -208,7 +261,7 @@ margin-top:50px;
 
 <div class="star">⭐⭐⭐⭐☆</div>
 
-<button class="cartBtn" onclick="addCart(500)">Thêm giỏ</button>
+<button class="cartBtn" onclick="addCart('Bàn phím',500)">Thêm giỏ</button>
 
 <a href="tel:0123456789"><button class="buy">Mua</button></a>
 
@@ -216,45 +269,71 @@ margin-top:50px;
 
 </div>
 
-
 <div class="cart">
 
-🛍 Giỏ hàng
+<h3>🛒 Giỏ hàng</h3>
+
+<ul id="cartList"></ul>
 
 <p>Tổng: <span id="total">0</span>k</p>
 
+<button onclick="openPay()">Thanh toán</button>
+
 </div>
 
+<div class="popup" id="payBox">
+
+<div class="popupBox">
+
+<h2>Thanh toán</h2>
+
+<p>Tổng tiền: <span id="payTotal"></span>k</p>
+
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=ShopThanhToan">
+
+<br><br>
+
+<button onclick="pay()">Xác nhận</button>
+
+<br><br>
+
+<button onclick="closePay()">Đóng</button>
+
+</div>
+
+</div>
 
 <a class="call" href="tel:0123456789">📞 Gọi</a>
 
-<a class="zalo" href="https://zalo.me/0838434412">💬 Zalo</a>
-
+<a class="zalo" href="https://zalo.me/0123456789">💬 Zalo</a>
 
 <footer>
 
 <h3>Liên hệ</h3>
 
-<p>📞 SĐT: 0838434412</p>
+<p>📞 0123456789</p>
 
-<p>Zalo: 0838434412</p>
+<p>Zalo: 0123456789</p>
 
-<p>https://www.facebook.com/khuatt.trung.kien</p>
+<p>Facebook: facebook.com/tenban</p>
 
 </footer>
-
 
 <script>
 
 let total=0
 
-function addCart(price){
+function addCart(name,price){
+
+let li=document.createElement("li")
+
+li.innerText=name+" - "+price+"k"
+
+document.getElementById("cartList").appendChild(li)
 
 total+=price
 
 document.getElementById("total").innerText=total
-
-alert("Đã thêm vào giỏ hàng")
 
 }
 
@@ -280,9 +359,44 @@ p.style.display=name.includes(value.toLowerCase())?"block":"none"
 
 }
 
+function openPay(){
+
+if(total==0){
+
+alert("Giỏ hàng trống")
+
+return
+
+}
+
+document.getElementById("payBox").style.display="flex"
+
+document.getElementById("payTotal").innerText=total
+
+}
+
+function closePay(){
+
+document.getElementById("payBox").style.display="none"
+
+}
+
+function pay(){
+
+alert("Thanh toán thành công (giả lập)")
+
+document.getElementById("cartList").innerHTML=""
+
+total=0
+
+document.getElementById("total").innerText=0
+
+closePay()
+
+}
+
 </script>
 
 </body>
 </html>
 ```
-
