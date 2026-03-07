@@ -148,9 +148,25 @@ products[i].style.display="none"
 
 }
 </script>
+<script>
+
+function addCart(name,price){
+
+let cart = JSON.parse(localStorage.getItem("cart")) || []
+
+cart.push({name:name,price:price})
+
+localStorage.setItem("cart",JSON.stringify(cart))
+
+alert("Đã thêm vào giỏ")
+
+}
+
+</script>
 </body>
 </html>
 ```
+
 
 
 
