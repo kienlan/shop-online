@@ -99,20 +99,17 @@ document.getElementById("slide").src=images[i]
 
 },3000)
 
-</script>
+<script>
 function addCart(name,price){
-
-let cart=JSON.parse(localStorage.getItem("cart"))||[]
-
-cart.push({name,price})
-
-localStorage.setItem("cart",JSON.stringify(cart))
-
-alert("Đã thêm vào giỏ")
-
+ let cart=JSON.parse(localStorage.getItem("cart"))||[]
+ cart.push({name,price})
+ localStorage.setItem("cart",JSON.stringify(cart))
+ alert("Đã thêm vào giỏ")
 }
-
 </script>
+
+</body>
+</html>
 
 </footer>
   <footer class="footer">
@@ -140,6 +137,7 @@ alert("Đã thêm vào giỏ")
 </body>
 </html>
 ```
+
 
 
 
