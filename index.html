@@ -2,56 +2,88 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shop của tôi</title>
+<title>Shop Online</title>
 
 <style>
 
 body{
 font-family:Arial;
 margin:0;
-background:linear-gradient(135deg,#4facfe,#00f2fe);
+background:linear-gradient(135deg,#5f9cff,#6be5ff);
 }
 
-header{
+/* MENU */
+
+nav{
 background:#111;
 color:white;
-padding:18px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-font-size:24px;
+padding:15px 30px;
 }
 
-.carticon{
-font-size:22px;
+.menu a{
+color:white;
+margin:0 15px;
+text-decoration:none;
+font-weight:bold;
 }
+
+.menu a:hover{
+color:#00eaff;
+}
+
+/* SEARCH */
+
+.search{
+text-align:center;
+margin:30px;
+}
+
+.search input{
+width:300px;
+padding:10px;
+border-radius:20px;
+border:none;
+}
+
+/* PRODUCTS */
 
 .products{
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-gap:30px;
-padding:40px;
+gap:35px;
+padding:20px;
 }
 
 .product{
 background:white;
-width:220px;
+width:230px;
 padding:20px;
 border-radius:15px;
-box-shadow:0 10px 25px rgba(0,0,0,0.15);
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
 text-align:center;
 transition:0.3s;
 }
 
 .product:hover{
-transform:translateY(-8px);
+transform:translateY(-10px);
 }
+
+/* IMAGE ZOOM */
 
 .product img{
 width:100%;
 border-radius:10px;
+transition:0.3s;
+}
+
+.product img:hover{
+transform:scale(1.1);
 }
 
 .price{
@@ -62,7 +94,6 @@ margin:8px 0;
 
 .stars{
 color:gold;
-margin-bottom:10px;
 }
 
 button{
@@ -79,13 +110,15 @@ button:hover{
 background:#16a34a;
 }
 
+/* CART */
+
 .cart{
 background:white;
-width:330px;
-margin:30px auto;
+width:350px;
+margin:40px auto;
 padding:20px;
 border-radius:15px;
-box-shadow:0 10px 25px rgba(0,0,0,0.15);
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
 
 .total{
@@ -102,6 +135,8 @@ margin-top:15px;
 .buybtn:hover{
 background:#1d4ed8;
 }
+
+/* ZALO BUTTON */
 
 .zalo{
 position:fixed;
@@ -130,16 +165,26 @@ align-items:center;
 
 <body>
 
-<header>
-<div>🛍 SHOP ONLINE</div>
-<div class="carticon">🛒</div>
-</header>
+<nav>
+<div><b>🛍 SHOP ONLINE</b></div>
 
-<div class="products">
+<div class="menu">
+<a href="#">Trang chủ</a>
+<a href="#">Sản phẩm</a>
+<a href="#">Liên hệ</a>
+</div>
+
+</nav>
+
+<div class="search">
+<input type="text" id="search" placeholder="Tìm sản phẩm..." onkeyup="searchProduct()">
+</div>
+
+<div class="products" id="product-list">
 
 <div class="product">
 <h3>Áo thun</h3>
-<img src="hình ảnh/aothun.jpg">
+<img src="images/aothun.jpg">
 <div class="stars">⭐⭐⭐⭐☆</div>
 <div class="price">100k</div>
 <button onclick="addToCart('Áo thun',100)">Thêm vào giỏ</button>
@@ -164,6 +209,7 @@ align-items:center;
 </div>
 
 <div class="cart">
+
 <h2>🛒 Giỏ hàng</h2>
 
 <ul id="cart-list"></ul>
@@ -200,9 +246,30 @@ document.getElementById("total").textContent=total;
 
 }
 
+/* SEARCH FUNCTION */
+
+function searchProduct(){
+
+let input=document.getElementById("search").value.toLowerCase();
+
+let products=document.getElementsByClassName("product");
+
+for(let i=0;i<products.length;i++){
+
+let name=products[i].innerText.toLowerCase();
+
+if(name.includes(input)){
+products[i].style.display="block";
+}else{
+products[i].style.display="none";
+}
+
+}
+
+}
+
 </script>
 
 </body>
 </html>
 ```
-
