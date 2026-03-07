@@ -2,79 +2,96 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shop của tôi</title>
 
 <style>
 
 body{
-font-family: Arial;
-background:#1e3a8a;
+font-family:Arial;
 margin:0;
-text-align:center;
+background:linear-gradient(135deg,#4facfe,#00f2fe);
 }
 
 header{
 background:#111;
 color:white;
-padding:20px;
-font-size:28px;
-font-weight:bold;
+padding:18px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:24px;
+}
+
+.carticon{
+font-size:22px;
 }
 
 .products{
 display:flex;
-justify-content:center;
-gap:40px;
 flex-wrap:wrap;
+justify-content:center;
+gap:30px;
 padding:40px;
 }
 
 .product{
 background:white;
 width:220px;
-border-radius:12px;
 padding:20px;
-box-shadow:0 8px 20px rgba(0,0,0,0.1);
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+text-align:center;
 transition:0.3s;
 }
 
 .product:hover{
 transform:translateY(-8px);
-box-shadow:0 15px 30px rgba(0,0,0,0.2);
 }
 
 .product img{
 width:100%;
-border-radius:8px;
+border-radius:10px;
 }
 
 .price{
-color:#e63946;
+color:red;
 font-weight:bold;
-margin:10px 0;
+margin:8px 0;
+}
+
+.stars{
+color:gold;
+margin-bottom:10px;
 }
 
 button{
-background:#16a34a;
+background:#22c55e;
 color:white;
 border:none;
 padding:10px 15px;
-border-radius:6px;
+border-radius:8px;
 cursor:pointer;
 font-weight:bold;
 }
 
 button:hover{
-background:#15803d;
+background:#16a34a;
 }
 
 .cart{
 background:white;
-width:320px;
-margin:40px auto;
+width:330px;
+margin:30px auto;
 padding:20px;
-border-radius:12px;
-box-shadow:0 8px 20px rgba(0,0,0,0.1);
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+.total{
+font-size:18px;
+font-weight:bold;
+margin-top:10px;
 }
 
 .buybtn{
@@ -86,10 +103,26 @@ margin-top:15px;
 background:#1d4ed8;
 }
 
-.total{
-margin-top:10px;
-font-weight:bold;
-font-size:18px;
+.zalo{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#0084ff;
+color:white;
+padding:15px;
+border-radius:50%;
+font-size:20px;
+text-decoration:none;
+box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+@media(max-width:700px){
+
+.products{
+flex-direction:column;
+align-items:center;
+}
+
 }
 
 </style>
@@ -97,13 +130,17 @@ font-size:18px;
 
 <body>
 
-<header>🛍 SHOP ONLINE</header>
+<header>
+<div>🛍 SHOP ONLINE</div>
+<div class="carticon">🛒</div>
+</header>
 
 <div class="products">
 
 <div class="product">
 <h3>Áo thun</h3>
 <img src="images/aothun.jpg">
+<div class="stars">⭐⭐⭐⭐☆</div>
 <div class="price">100k</div>
 <button onclick="addToCart('Áo thun',100)">Thêm vào giỏ</button>
 </div>
@@ -111,6 +148,7 @@ font-size:18px;
 <div class="product">
 <h3>Tai nghe</h3>
 <img src="images/tainghe.jpg">
+<div class="stars">⭐⭐⭐⭐⭐</div>
 <div class="price">300k</div>
 <button onclick="addToCart('Tai nghe',300)">Thêm vào giỏ</button>
 </div>
@@ -118,6 +156,7 @@ font-size:18px;
 <div class="product">
 <h3>Bàn phím</h3>
 <img src="images/banphim.jpg">
+<div class="stars">⭐⭐⭐⭐☆</div>
 <div class="price">500k</div>
 <button onclick="addToCart('Bàn phím',500)">Thêm vào giỏ</button>
 </div>
@@ -126,32 +165,37 @@ font-size:18px;
 
 <div class="cart">
 <h2>🛒 Giỏ hàng</h2>
+
 <ul id="cart-list"></ul>
 
 <div class="total">
 Tổng tiền: <span id="total">0</span>k
 </div>
 
-<a href="tel:0838434412">
+<a href="tel:0123456789">
 <button class="buybtn">Mua ngay</button>
 </a>
 
 </div>
 
+<a class="zalo" href="https://zalo.me/0123456789">💬</a>
+
 <script>
 
-let total = 0;
+let total=0;
 
 function addToCart(name,price){
 
 let list=document.getElementById("cart-list");
 
 let item=document.createElement("li");
+
 item.textContent=name+" - "+price+"k";
 
 list.appendChild(item);
 
 total+=price;
+
 document.getElementById("total").textContent=total;
 
 }
@@ -161,4 +205,3 @@ document.getElementById("total").textContent=total;
 </body>
 </html>
 ```
-
