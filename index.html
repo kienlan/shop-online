@@ -22,7 +22,7 @@ khuat chung kien
 </div>
 <h2>🛒 SHOP ONLINE</h2>
 
-<input type="text" placeholder="Tìm sản phẩm...">
+<input type="text" id="search" placeholder="Tìm sản phẩm..." onkeyup="searchProduct()">
 
 <a href="cart.html">🛒 Giỏ hàng</a>
 
@@ -134,9 +134,31 @@ function addCart(name,price){
 <a href="https://m.me" target="_blank">💬</a>
 
 </div>
+<script>
+function searchProduct(){
+
+let input=document.getElementById("search").value.toLowerCase()
+
+let products=document.getElementsByClassName("product")
+
+for(let i=0;i<products.length;i++){
+
+let name=products[i].getElementsByTagName("h3")[0].innerText.toLowerCase()
+
+if(name.includes(input)){
+products[i].style.display="block"
+}else{
+products[i].style.display="none"
+}
+
+}
+
+}
+</script>
 </body>
 </html>
 ```
+
 
 
 
