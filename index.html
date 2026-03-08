@@ -153,7 +153,7 @@ margin-top:40px;
 
 <header>
 
-<div class="logo">🛒 SHOP PRO</div>
+<div class="logo">🛒 CHUNG KIEN SHOP</div>
 
 <div class="search">
 <input type="text" placeholder="Tìm sản phẩm..." onkeyup="searchProduct(this.value)">
@@ -240,17 +240,24 @@ margin-top:40px;
 
 <ul id="cartList"></ul>
 
-<p>Tổng: <span id="total">0</span>k</p>
+<p><b>Tổng: <span id="total">0</span>k</b></p>
+
+<button onclick="checkout()" style="background:#ff5722;color:white;width:100%;padding:10px;border-radius:6px;">
+Thanh toán
+</button>
+
+<button onclick="clearCart()" style="background:#999;color:white;width:100%;padding:10px;border-radius:6px;margin-top:5px;">
+Xóa giỏ hàng
+</button>
 
 </div>
-
 <footer>
 
 <h3>SHOP ONLINE</h3>
 
-<p>📞 0123456789</p>
+<p>📞 0838434412</p>
 
-<p>Facebook: facebook.com/shop</p>
+<p>Facebook: https://www.facebook.com/khuatt.trung.kien</p>
 
 </footer>
 
@@ -262,13 +269,49 @@ function addCart(name,price){
 
 let li=document.createElement("li")
 
-li.innerText=name+" - "+price+"k"
+li.innerHTML=name+" - "+price+"k <button onclick='removeItem(this,"+price+")'>❌</button>"
 
 document.getElementById("cartList").appendChild(li)
 
 total+=price
 
 document.getElementById("total").innerText=total
+
+}
+
+function removeItem(btn,price){
+
+btn.parentElement.remove()
+
+total-=price
+
+document.getElementById("total").innerText=total
+
+}
+
+function clearCart(){
+
+document.getElementById("cartList").innerHTML=""
+
+total=0
+
+document.getElementById("total").innerText=0
+
+}
+
+function checkout(){
+
+if(total==0){
+
+alert("Giỏ hàng đang trống")
+
+}else{
+
+alert("Thanh toán thành công 💰 Tổng tiền: "+total+"k")
+
+clearCart()
+
+}
 
 }
 
@@ -316,5 +359,6 @@ p.style.display="none"
 
 </body>
 </html>
+
 
 
