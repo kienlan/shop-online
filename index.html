@@ -1,1 +1,401 @@
-<!DOCTYPE html> <html lang="vi"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>CHUNG KIEN SHOP</title> <style> body{ font-family:Arial; margin:0; background:#f5f5f5; } /* HEADER */ header{ background:#ff5722; color:white; display:flex; justify-content:space-between; align-items:center; padding:15px 40px; } .logo{ font-size:24px; font-weight:bold; } .search input{ width:350px; padding:10px; border:none; border-radius:6px; } /* MENU */ .menu{ background:white; display:flex; justify-content:center; gap:40px; padding:12px; box-shadow:0 2px 10px rgba(0,0,0,0.1); } .menu div{ cursor:pointer; font-weight:bold; } /* SLIDER */ .slider{ height:300px; background:url("https://picsum.photos/1200/400") center/cover; } /* PRODUCTS */ .products{ display:flex; flex-wrap:wrap; justify-content:center; gap:25px; padding:30px; } .product{ background:white; width:220px; padding:20px; border-radius:12px; box-shadow:0 5px 15px rgba(0,0,0,0.15); text-align:center; transition:0.3s; } .product:hover{ transform:translateY(-8px); } .product img{ width:160px; height:160px; object-fit:cover; border-radius:8px; cursor:pointer; } .price{ color:#ff5722; font-weight:bold; font-size:18px; } .star{ color:gold; } /* BUTTON */ button{ border:none; padding:10px 14px; margin:5px; border-radius:6px; cursor:pointer; font-weight:bold; } .cartBtn{ background:#2196f3; color:white; } .buy{ background:#4caf50; color:white; } /* CART */ .cart{ position:fixed; right:20px; top:20px; background:white; padding:15px; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.2); width:250px; } /* FOOTER */ footer{ background:#222; color:white; text-align:center; padding:30px; margin-top:40px; } </style> </head> <body> <header> <div class="logo">🛒 CHUNG KIEN SHOP</div> <div class="search"> <input type="text" placeholder="Tìm sản phẩm..." onkeyup="searchProduct(this.value)"> </div> </header> <div class="menu"> <div onclick="filterCategory('all')">Tất cả</div> <div onclick="filterCategory('ao')">Áo</div> <div onclick="filterCategory('dientu')">Điện tử</div> <div onclick="filterCategory('phukien')">Phụ kiện</div> </div> <div class="slider"></div> <div class="products"> <!-- SẢN PHẨM CỦA BẠN --> <div class="product" data-cat="ao"> <h3>Áo thun</h3> <img src="images/aothun2.jpg" onclick="zoom(this.src)"> <p class="price">100k</p> <div class="star">⭐⭐⭐⭐</div> <button class="cartBtn" onclick="addCart('Áo thun',100)">Thêm giỏ</button> <button class="buy">Mua</button> </div> <div class="product" data-cat="dientu"> <h3>Tai nghe</h3> <img src="images/tainghe.jpg" onclick="zoom(this.src)"> <p class="price">300k</p> <div class="star">⭐⭐⭐⭐⭐</div> <button class="cartBtn" onclick="addCart('Tai nghe',300)">Thêm giỏ</button> <button class="buy">Mua</button> </div> <div class="product" data-cat="dientu"> <h3>oanh mới bị đá</h3> <img src="images/banphim.jpg" onclick="zoom(this.src)"> <p class="price">500k</p> <div class="star">⭐⭐⭐⭐</div> <button class="cartBtn" onclick="addCart('Bàn phím',500)">Thêm giỏ</button> <button class="buy">Mua</button> </div> <!-- SẢN PHẨM THÊM --> <div class="product" data-cat="phukien"> <h3>Chuột gaming</h3> <img src="https://picsum.photos/200?1" onclick="zoom(this.src)"> <p class="price">250k</p> <div class="star">⭐⭐⭐⭐⭐</div> <button class="cartBtn" onclick="addCart('Chuột',250)">Thêm giỏ</button> <button class="buy">Mua</button> </div> <div class="product" data-cat="phukien"> <h3>Pad chuột</h3> <img src="https://picsum.photos/200?2" onclick="zoom(this.src)"> <p class="price">120k</p> <div class="star">⭐⭐⭐⭐</div> <button class="cartBtn" onclick="addCart('Pad chuột',120)">Thêm giỏ</button> <button class="buy">Mua</button> </div> <div class="product" data-cat="dientu"> <h3>Loa bluetooth</h3> <img src="https://picsum.photos/200?3" onclick="zoom(this.src)"> <p class="price">450k</p> <div class="star">⭐⭐⭐⭐⭐</div> <button class="cartBtn" onclick="addCart('Loa',450)">Thêm giỏ</button> <button class="buy">Mua</button> </div> </div> <div class="cart"> <h3>🛒 Giỏ hàng</h3> <ul id="cartList"></ul> <p><b>Tổng: <span id="total">0</span>k</b></p> <button onclick="checkout()" style="background:#ff5722;color:white;width:100%;padding:10px;border-radius:6px;"> Thanh toán </button> <button onclick="clearCart()" style="background:#999;color:white;width:100%;padding:10px;border-radius:6px;margin-top:5px;"> Xóa giỏ hàng </button> </div> <footer> <h3>SHOP ONLINE</h3> <p>📞 0838434412</p> <p>Facebook: https://www.facebook.com/khuatt.trung.kien</p> </footer> <script> let total=0 function addCart(name,price){ let li=document.createElement("li") li.innerHTML=name+" - "+price+"k <button onclick='removeItem(this,"+price+")'>❌</button>" document.getElementById("cartList").appendChild(li) total+=price document.getElementById("total").innerText=total } function removeItem(btn,price){ btn.parentElement.remove() total-=price document.getElementById("total").innerText=total } function clearCart(){ document.getElementById("cartList").innerHTML="" total=0 document.getElementById("total").innerText=0 } function checkout(){ if(total==0){ alert("Giỏ hàng đang trống") }else{ alert("Thanh toán thành công 💰 Tổng tiền: "+total+"k") clearCart() } } function zoom(src){ let w=window.open() w.document.write("<img src='"+src+"' style='width:100%'>") } function searchProduct(value){ let products=document.querySelectorAll(".product") products.forEach(p=>{ let name=p.querySelector("h3").innerText.toLowerCase() p.style.display=name.includes(value.toLowerCase())?"block":"none" }) } function filterCategory(cat){ let products=document.querySelectorAll(".product") products.forEach(p=>{ if(cat=="all"||p.dataset.cat==cat) p.style.display="block" else p.style.display="none" }) } </script> </body> </html>
+```html
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SHOP ONLINE</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+background:#f5f5f5;
+}
+
+/* HEADER */
+
+header{
+background:#ff5722;
+color:white;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:15px 40px;
+}
+
+.logo{
+font-size:24px;
+font-weight:bold;
+}
+
+.search input{
+padding:10px;
+border:none;
+border-radius:5px;
+width:300px;
+}
+
+/* MENU */
+
+.menu{
+background:white;
+padding:10px;
+display:flex;
+justify-content:center;
+gap:40px;
+box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+
+.menu div{
+cursor:pointer;
+}
+
+/* BANNER */
+
+.banner{
+height:300px;
+background:url("https://picsum.photos/1200/400") center/cover;
+margin-bottom:20px;
+}
+
+/* PRODUCTS */
+
+.products{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:25px;
+padding:20px;
+}
+
+.product{
+background:white;
+width:220px;
+padding:15px;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,0.15);
+text-align:center;
+transition:0.3s;
+}
+
+.product:hover{
+transform:translateY(-5px);
+}
+
+.product img{
+width:150px;
+cursor:pointer;
+}
+
+.price{
+color:#ff5722;
+font-weight:bold;
+font-size:18px;
+}
+
+.star{
+color:gold;
+}
+
+/* BUTTON */
+
+button{
+border:none;
+padding:8px 12px;
+margin:5px;
+border-radius:5px;
+cursor:pointer;
+}
+
+.cartBtn{
+background:#2196f3;
+color:white;
+}
+
+.buy{
+background:#4caf50;
+color:white;
+}
+
+/* CART */
+
+.cart{
+position:fixed;
+right:20px;
+top:20px;
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 5px 10px rgba(0,0,0,0.2);
+width:200px;
+}
+
+/* POPUP */
+
+.popup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+justify-content:center;
+align-items:center;
+}
+
+.popupBox{
+background:white;
+padding:30px;
+border-radius:10px;
+text-align:center;
+}
+
+/* CONTACT BUTTON */
+
+.call{
+position:fixed;
+bottom:20px;
+left:20px;
+background:#4caf50;
+color:white;
+padding:15px;
+border-radius:50px;
+text-decoration:none;
+}
+
+.zalo{
+position:fixed;
+bottom:80px;
+left:20px;
+background:#0084ff;
+color:white;
+padding:15px;
+border-radius:50px;
+text-decoration:none;
+}
+
+/* FOOTER */
+
+footer{
+background:#222;
+color:white;
+text-align:center;
+padding:30px;
+margin-top:40px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">🛒 SHOP ONLINE</div>
+
+<div class="search">
+<input type="text" placeholder="Tìm sản phẩm..." onkeyup="searchProduct(this.value)">
+</div>
+
+</header>
+
+<div class="menu">
+
+<div>Áo</div>
+<div>Điện tử</div>
+<div>Phụ kiện</div>
+<div>Khuyến mãi</div>
+
+</div>
+
+<div class="banner"></div>
+
+<div class="products">
+
+<div class="product">
+
+<h3>Áo thun</h3>
+
+<img src="images/ao.jpg" onclick="zoom(this.src)">
+
+<p class="price">100k</p>
+
+<div class="star">⭐⭐⭐⭐☆</div>
+
+<button class="cartBtn" onclick="addCart('Áo thun',100)">Thêm giỏ</button>
+
+<a href="tel:0123456789"><button class="buy">Mua</button></a>
+
+</div>
+
+<div class="product">
+
+<h3>Tai nghe</h3>
+<img src="images/tainghe.jpg" onclick="zoom(this.src)">
+
+<p class="price">300k</p>
+
+<div class="star">⭐⭐⭐⭐⭐</div>
+
+<button class="cartBtn" onclick="addCart('Tai nghe',300)">Thêm giỏ</button>
+
+<a href="tel:0123456789"><button class="buy">Mua</button></a>
+
+</div>
+
+<div class="product">
+
+<h3>Bàn phím</h3>
+
+<img src="images/banphim.jpg" onclick="zoom(this.src)">
+
+<p class="price">500k</p>
+
+<div class="star">⭐⭐⭐⭐☆</div>
+
+<button class="cartBtn" onclick="addCart('Bàn phím',500)">Thêm giỏ</button>
+
+<a href="tel:0123456789"><button class="buy">Mua</button></a>
+
+</div>
+
+</div>
+
+<div class="cart">
+
+<h3>🛒 Giỏ hàng</h3>
+
+<ul id="cartList"></ul>
+
+<p>Tổng: <span id="total">0</span>k</p>
+
+<button onclick="openPay()">Thanh toán</button>
+
+</div>
+
+<div class="popup" id="payBox">
+
+<div class="popupBox">
+
+<h2>Thanh toán</h2>
+
+<p>Tổng tiền: <span id="payTotal"></span>k</p>
+
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=ShopThanhToan">
+
+<br><br>
+
+<button onclick="pay()">Xác nhận</button>
+
+<br><br>
+
+<button onclick="closePay()">Đóng</button>
+
+</div>
+
+</div>
+
+<a class="call" href="tel:0123456789">📞 Gọi</a>
+
+<a class="zalo" href="https://zalo.me/0123456789">💬 Zalo</a>
+
+<footer>
+
+<h3>Liên hệ</h3>
+
+<p>📞 0123456789</p>
+
+<p>Zalo: 0123456789</p>
+
+<p>Facebook: facebook.com/tenban</p>
+
+</footer>
+
+<script>
+
+let total=0
+
+function addCart(name,price){
+
+let li=document.createElement("li")
+
+li.innerText=name+" - "+price+"k"
+
+document.getElementById("cartList").appendChild(li)
+
+total+=price
+
+document.getElementById("total").innerText=total
+
+}
+
+function zoom(src){
+
+let w=window.open()
+
+w.document.write("<img src='"+src+"' style='width:100%'>")
+
+}
+
+function searchProduct(value){
+
+let products=document.querySelectorAll(".product")
+
+products.forEach(p=>{
+
+let name=p.querySelector("h3").innerText.toLowerCase()
+
+p.style.display=name.includes(value.toLowerCase())?"block":"none"
+
+})
+
+}
+
+function openPay(){
+
+if(total==0){
+
+alert("Giỏ hàng trống")
+
+return
+
+}
+
+document.getElementById("payBox").style.display="flex"
+
+document.getElementById("payTotal").innerText=total
+
+}
+
+function closePay(){
+
+document.getElementById("payBox").style.display="none"
+
+}
+
+function pay(){
+
+alert("Thanh toán thành công (giả lập)")
+
+document.getElementById("cartList").innerHTML=""
+
+total=0
+
+document.getElementById("total").innerText=0
+
+closePay()
+
+}
+
+</script>
+
+</body>
+</html>
+```
